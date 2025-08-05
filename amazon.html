@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Amazon Style Clone</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #232f3e;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar h1 {
+      font-size: 24px;
+      color: #ff9900;
+      margin: 0;
+    }
+
+    .navbar input {
+      width: 300px;
+      padding: 8px;
+    }
+
+    .navbar .cart {
+      font-weight: bold;
+    }
+
+    /* Banner */
+    .banner {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .banner img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    /* Product Grid */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .product {
+      background-color: white;
+      padding: 10px;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .product:hover {
+      transform: scale(1.05);
+    }
+
+    .product img {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+    }
+
+    .product h3 {
+      font-size: 16px;
+      margin: 10px 0 5px;
+    }
+
+    .product p {
+      font-size: 14px;
+      color: #b12704;
+      margin: 0;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #232f3e;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const bannerImages = [
+        'https://via.placeholder.com/1200x300?text=Amazon+Banner+1',
+        'https://via.placeholder.com/1200x300?text=Amazon+Banner+2',
+        'https://via.placeholder.com/1200x300?text=Amazon+Banner+3'
+      ];
+
+      let bannerIndex = 0;
+      const bannerImg = document.querySelector('#banner-img');
+
+      setInterval(() => {
+        bannerIndex = (bannerIndex + 1) % bannerImages.length;
+        bannerImg.src = bannerImages[bannerIndex];
+      }, 3000);
+
+      const products = [
+        { title: "Wireless Headphones", price: "$59.99", img: "https://via.placeholder.com/200?text=Headphones" },
+        { title: "Smart Watch", price: "$99.99", img: "https://via.placeholder.com/200?text=Watch" },
+        { title: "Gaming Mouse", price: "$29.99", img: "https://via.placeholder.com/200?text=Mouse" },
+        { title: "LED Monitor", price: "$199.99", img: "https://via.placeholder.com/200?text=Monitor" },
+        { title: "Bluetooth Speaker", price: "$49.99", img: "https://via.placeholder.com/200?text=Speaker" },
+        { title: "Smartphone", price: "$699.99", img: "https://via.placeholder.com/200?text=Phone" }
+      ];
+
+      const productContainer = document.querySelector('.products');
+
+      products.forEach(prod => {
+        const div = document.createElement('div');
+        div.className = 'product';
+        div.innerHTML = `
+          <img src="${prod.img}" alt="${prod.title}">
+          <h3>${prod.title}</h3>
+          <p>${prod.price}</p>
+        `;
+        productContainer.appendChild(div);
+      });
+    });
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>Amazon</h1>
+    <input type="text" placeholder="Search products">
+    <div class="cart">🛒 Cart</div>
+  </div>
+
+  <!-- Banner -->
+  <div class="banner">
+    <img id="banner-img" src="https://via.placeholder.com/1200x300?text=Amazon+Banner+1" alt="Banner">
+  </div>
+
+  <!-- Product List -->
+  <div class="products">
+    <!-- Dynamically filled by JavaScript -->
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    © 2025 Amazon Clone — For Educational Use Only
+  </div>
+
+</body>
+</html>
